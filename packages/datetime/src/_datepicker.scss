@@ -1,0 +1,226 @@
+// Copyright 2015 Palantir Technologies, Inc. All rights reserved.
+// Licensed under the terms of the LICENSE file distributed with this project.
+
+@import "~@blueprintjs/core/src/components/popover/common";
+@import "./common";
+
+$cell-size: $pt-grid-size * 3 !default;
+$header-height: $pt-grid-size * 4 !default;
+$header-margin: ($header-height - $pt-input-height) / 2 !default;
+
+@mixin calendar-day() {
+  display: table-cell;
+  width: $datepicker-day-size;
+  height: $datepicker-day-size;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 1;
+}
+
+// react-day-picker does not conform to our naming scheme
+// stylelint-disable selector-class-pattern
+.#{$ns}-datepicker {
+  position: relative;
+  border-radius: $pt-border-radius;
+  background: $datepicker-background-color;
+  padding: $datepicker-padding;
+  user-select: none;
+
+  .DayPicker {
+    display: inline-block;
+    position: relative;
+    min-width: $datepicker-min-width;
+    vertical-align: top;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .DayPicker-Month {
+    display: inline-table;
+    margin: 0 $datepicker-padding $datepicker-padding;
+    border-collapse: collapse;
+    border-spacing: 0;
+    user-select: none;
+
+    // create space between months (selector matches all but first month)
+    & + & {
+      margin-left: $pt-grid-size;
+    }
+  }
+
+  .DayPicker-Caption {
+    display: table-caption;
+  }
+
+  .DayPicker-Weekdays {
+    display: table-header-group;
+  }
+
+  .DayPicker-WeekdaysRow {
+    display: table-row;
+  }
+
+  .DayPicker-Weekday {
+    @include calendar-day();
+    padding-top: $datepicker-padding;
+    font-weight: 600;
+
+    // normalize.css adds an underline to abbr[title] elements, remove it here
+    abbr[title] {
+      text-decoration: none;
+    }
+  }
+
+  .DayPicker-Body {
+    display: table-row-group;
+  }
+
+  .DayPicker-Week {
+    display: table-row;
+  }
+
+  .DayPicker-WeekNumber {
+    @include calendar-day();
+    color: $pt-text-color-disabled;
+    font-size: $pt-font-size;
+  }
+
+  .DayPicker-Day {
+    @include calendar-day();
+    border-radius: $pt-border-radius;
+    cursor: pointer;
+
+    // spelling out full name so these are equal specificity to pseudo-classes (.DayPicker-Day:hover)
+    &.DayPicker-Day--outside {
+      color: $pt-text-color-disabled;
+    }
+
+    &:hover,
+    &:focus {
+      background: $datepicker-day-background-color-hover;
+      color: $pt-text-color;
+    }
+
+    &:active {
+      background: $datepicker-day-background-color-active;
+    }
+
+    &.DayPicker-Day--selected {
+      border-radius: $pt-border-radius;
+      background-color: $blue3;
+      color: $white;
+
+      &:hover {
+        background-color: $blue2;
+      }
+    }
+
+    // putting it last so it overrides equally specific selectors above.
+    &.DayPicker-Day--disabled {
+      background: none;
+      cursor: not-allowed;
+      color: $pt-text-color-disabled;
+    }
+  }
+}
+
+.#{$ns}-datepicker-navbar {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: $pt-button-height;
+
+  > .DayPicker-NavButton--prev {
+    margin-right: auto;
+  }
+
+  > .DayPicker-NavButton--next {
+    margin-left: auto;
+  }
+}
+
+.#{$ns}-datepicker-caption {
+  @include pt-flex-container(row, $fill: ":first-child");
+  justify-content: space-between;
+  margin: 0 ($pt-button-height - $datepicker-padding) $datepicker-padding;
+
+  // HTMLSelect overrides for a narrower appearance
+  select {
+    padding-right: $pt-icon-size-standard;
+    padding-left: $datepicker-padding;
+    font-weight: 600;
+
+    + .#{$ns}-icon {
+      right: 2px;
+    }
+  }
+
+  + .#{$ns}-divider {
+    margin: 0;
+  }
+}
+
+.#{$ns}-datepicker-month-select {
+  flex-shrink: 1;
+}
+
+.#{$ns}-datepicker-year-select {
+  flex-shrink: 1;
+  min-width: 60px;
+}
+
+.#{$ns}-datepicker-caption-measure {
+  padding-left: $datepicker-padding;
+  font-weight: 600;
+}
+
+.#{$ns}-datepicker-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.#{$ns}-dark .#{$ns}-datepicker {
+  background: $dark-datepicker-background-color;
+
+  .DayPicker-WeekNumber {
+    color: $pt-dark-text-color-disabled;
+  }
+
+  .DayPicker-Day {
+    &.DayPicker-Day--outside {
+      color: $pt-dark-text-color-disabled;
+    }
+
+    &:hover,
+    &:focus {
+      background: $dark-datepicker-day-background-color-hover;
+      color: $white;
+    }
+
+    &:active {
+      background: $dark-datepicker-day-background-color-active;
+    }
+
+    &.DayPicker-Day--selected {
+      background-color: $blue3;
+
+      &:hover {
+        background-color: $blue4;
+      }
+    }
+
+    &.DayPicker-Day--disabled {
+      background: none;
+      color: $pt-dark-text-color-disabled;
+    }
+  }
+
+  .#{$ns}-datepicker-footer {
+    border-top-color: $pt-dark-divider-black;
+  }
+}

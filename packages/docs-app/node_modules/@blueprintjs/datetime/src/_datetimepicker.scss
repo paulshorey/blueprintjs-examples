@@ -1,0 +1,28 @@
+// Copyright 2016 Palantir Technologies, Inc. All rights reserved.
+// Licensed under the terms of the LICENSE file distributed with this project.
+
+@import "./common";
+
+.#{$ns}-datetimepicker {
+  border-radius: $pt-border-radius;
+  background-color: $white;
+  padding: $pt-grid-size;
+  text-align: center;
+
+  .#{$ns}-dark & {
+    background: $dark-gray4;
+
+    .#{$ns}-datepicker {
+      border-bottom: 1px solid $pt-dark-divider-black;
+    }
+  }
+
+  .#{$ns}-datepicker {
+    border-bottom: 1px solid $pt-divider-black;
+    padding: 0 0 $pt-grid-size;
+  }
+
+  .#{$ns}-timepicker {
+    margin-top: $pt-grid-size;
+  }
+}

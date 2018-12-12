@@ -3,7 +3,7 @@
   With just a couple tweaks to a couple package.json files...  
 
 ### Instructions...  
-  cd ./packages; npm install;  
+  npm install;  
   cd ./docs-data; npm install; npm run compile;  
   cd ../docs-app; npm install; npm run dev;  
 

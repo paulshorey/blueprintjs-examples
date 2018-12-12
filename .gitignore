@@ -21,7 +21,7 @@ yarn-error.log
 build
 dist
 lib
-# generated
+generated
 coverage
 /docs
 docs-static/**/*.d.ts

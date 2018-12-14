@@ -12,6 +12,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.0.0",
     "@blueprintjs/docs-theme": "^3.0.0",
+    "@types/dom4": "^2.0.1",
     "better-handlebars": "github:wmeldon/better-handlebars",
     "documentalist": "^1.4.0",
     "glob": "^7.1.2",

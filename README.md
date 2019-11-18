@@ -4,7 +4,7 @@
 
 ### Instructions...  
   npm install;  
-  cd ./docs-data; npm install; npm run compile;  
+  cd ./packages/docs-data; npm install; npm run compile;  
   cd ../docs-app; npm install; npm run dev;  
 
 ### ??  
